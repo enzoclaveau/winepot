@@ -1,0 +1,98 @@
+
+<style>
+    .content {
+      max-width: 550px;
+      margin: auto;
+    }
+    h1, h2, .question{
+        text-align: center;
+    }
+
+    .question{
+        font-size: 20px;
+    }
+    button{
+        height: 40px;
+        width: 100px;
+        margin-top: 40px;
+        margin-right: 60px;
+        margin-left: 60px;
+    }
+    .yes_button {
+        color: white;
+        background-color: forestgreen;
+    }
+    .no_button {
+        color: white;
+        background-color:orangered;
+        float: right;
+    }
+    </style>
+
+<body>
+    <div class=content>
+        <h2>Geld in de Pot </h2> 
+        <h1 class=jar>0</h1>
+        
+        <div class=question>Waren Sjaan, Pourya, Bente, Mercedes en Enzo vandaag bij elkaar?</div>
+
+        <button class=yes_button>Ja!</button>
+        <button class=no_button>Nee...</button>
+    </div>
+</body>
+
+<script>
+
+    console.log("Script Started");
+
+    addEventListeners()
+
+    let jar = document.querySelector('.jar')
+
+    putSavedAmountInJar(jar);
+
+    function putSavedAmountInJar(localJar){
+        addToJar(localJar, getSavedAmount());
+    }
+
+    function addToJar(localJar, value) {
+        jar_value = getCurrentAmountFromJar(localJar);
+        localJar.textContent = jar_value + value;
+    }
+
+    function getCurrentAmountFromJar(localJar){
+        return parseInt(localJar.textContent);
+    }
+
+    function getIncreaseAmount(){
+        return 10;
+    }
+
+    function getSavedAmount(){
+        return 140; 
+    }
+
+    function yesButtonClicked(){
+        console.log("Yes button was clicked");
+        addToJar(jar, getIncreaseAmount());
+    }
+
+    function noButtonClicked(){
+        console.log("No button was clicked");
+        alert("C'est dommage!");
+    }
+
+    function addEventListeners(){
+
+        document.addEventListener('click', function(event) {
+            if(event.target.matches('.yes_button')){
+                yesButtonClicked();
+            }
+        
+            if(event.target.matches('.no_button')){
+                noButtonClicked();
+            }
+        })
+    }
+
+</script>
